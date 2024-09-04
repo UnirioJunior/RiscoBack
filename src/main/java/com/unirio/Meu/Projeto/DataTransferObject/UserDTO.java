@@ -19,11 +19,11 @@ public class UserDTO {
 	private TipoSituacaoUsuario situacao;
 	
 	public UserDTO(UserEntities user) {
-        BeanUtils.copyProperties(user, this);
-        if (user.getLicenca() != null) {
-            this.licenca = new LicencaDTO(user.getLicenca());
-        }
-    }
+	    BeanUtils.copyProperties(user, this);
+	    if (user.getLicenca() != null) {
+	        this.licenca = new LicencaDTO(user.getLicenca());
+	    }
+	}
 
 	
 	public UserDTO() {

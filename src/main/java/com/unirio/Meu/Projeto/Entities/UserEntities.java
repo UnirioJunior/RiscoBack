@@ -46,7 +46,13 @@ public class UserEntities {
 	private TipoSituacaoUsuario situacao;
 	
 	public UserEntities(UserDTO usuario) {
-		BeanUtils.copyProperties(usuario, this);
+	    // Copia as propriedades básicas
+	    BeanUtils.copyProperties(usuario, this);
+
+	    // Configura manualmente a propriedade 'licenca'
+	    if (usuario.getLicenca() != null) {
+	        this.licenca = new LicencaEntities(usuario.getLicenca().getId());
+	    }
 	}
 
 	@ManyToOne

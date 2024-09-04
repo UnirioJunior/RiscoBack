@@ -51,6 +51,11 @@ public class LicencaEntities {
 		BeanUtils.copyProperties(licenca, this);
 	}
 	
+	// Novo construtor que aceita um ID
+		public LicencaEntities(Long id) {
+			this.id = id;
+		}
+	
 	public Long getId() {
 		return id;
 	}

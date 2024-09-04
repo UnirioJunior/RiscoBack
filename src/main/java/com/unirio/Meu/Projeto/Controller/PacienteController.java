@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -33,6 +34,12 @@ public class PacienteController {
 	public void  inserir(@RequestBody PacienteEntities paciente) {
 		pacienteService.inserir(paciente);
 	}
+	
+	@PutMapping
+    public ResponseEntity<PacienteEntities> alterar(@RequestBody PacienteEntities paciente) {
+        PacienteEntities pacienteAlterado = pacienteService.alterar(paciente);
+        return ResponseEntity.ok(pacienteAlterado);
+    }
 	
 	@DeleteMapping("/{id}")
 	public ResponseEntity<?> excluir(@PathVariable("id") Long id){
