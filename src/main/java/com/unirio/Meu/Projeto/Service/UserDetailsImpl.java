@@ -19,8 +19,10 @@ public class UserDetailsImpl implements UserDetails {
 	private String email;
 
 	private String password;
+	
+	private Long licenca;
 
-	public UserDetailsImpl(Long id, String name, String username, String password, String email,
+	public UserDetailsImpl(Long id, String name, String username, String password, String email, Long licenca,
 			Collection<? extends GrantedAuthority> authorities) {
 		super();
 		this.id = id;
@@ -28,6 +30,7 @@ public class UserDetailsImpl implements UserDetails {
 		this.username = username;
 		this.password = password;
 		this.email = email;
+		this.licenca = licenca;
 		this.authorities = authorities;
 	}
 
@@ -39,6 +42,7 @@ public class UserDetailsImpl implements UserDetails {
 				usuario.getLogin(),
 				usuario.getSenha(), 
 				usuario.getEmail(),
+				usuario.getLicenca().getId(),
 				new ArrayList<>());
 	}
 
@@ -52,6 +56,19 @@ public class UserDetailsImpl implements UserDetails {
 	@Override
 	public String getPassword() {
 		return password;
+	}
+	
+	public Long getLicenca() {
+		return licenca;
+	}
+	
+
+	public Long getId() {
+		return id;
+	}
+
+	public void setId(Long id) {
+		this.id = id;
 	}
 
 	@Override
@@ -78,5 +95,5 @@ public class UserDetailsImpl implements UserDetails {
 	public boolean isEnabled() {
 		return true;
 	}
-
+	
 }

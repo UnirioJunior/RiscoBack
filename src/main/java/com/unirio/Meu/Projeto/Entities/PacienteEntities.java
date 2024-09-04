@@ -20,7 +20,7 @@ public class PacienteEntities {
 	private Long id;
 	@ManyToOne
 	@JoinColumn(name="id_licenca")
-	private LicencaEntities idLicenca;
+	private LicencaEntities licenca;
 	@Column(length = 70, nullable = false)
 	private String nome;
 	@Column(length = 14, nullable = false, unique = true)
@@ -47,11 +47,11 @@ public class PacienteEntities {
 	public void setId(Long id) {
 		this.id = id;
 	}
-	public LicencaEntities getIdLicenca() {
-		return idLicenca;
+	public LicencaEntities getLicenca() {
+		return licenca;
 	}
-	public void setIdLicenca(LicencaEntities idLicenca) {
-		this.idLicenca = idLicenca;
+	public void setLicenca(LicencaEntities licenca) {
+		this.licenca = licenca;
 	}
 	public String getNome() {
 		return nome;

@@ -25,6 +25,9 @@ public class UserEntities {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
+	@ManyToOne
+    @JoinColumn(name = "id_licenca", nullable = false)
+    private LicencaEntities licenca;
 	@Column(nullable = false, name = "User_name")
 	private String nome;
 	@Column(nullable = false, name = "User_login")
@@ -33,6 +36,10 @@ public class UserEntities {
 	private String email;
 	@Column(nullable = false, name = "User_senha")
 	private String senha;
+	@Column(nullable = true)
+	private String crm;
+	@Column(nullable = true)
+	private String especialidade;
 	
 	@Enumerated(EnumType.STRING)
 	@Column(nullable = false, name = "User_situacao")
@@ -92,6 +99,16 @@ public class UserEntities {
 		this.senha = senha;
 	}
 	
+	public LicencaEntities getLicenca() {
+		return licenca;
+	}
+
+
+	public void setLicenca(LicencaEntities licenca) {
+		this.licenca = licenca;
+	}
+
+
 	public TipoSituacaoUsuario getSituacao() {
 		return situacao;
 	}
@@ -106,6 +123,26 @@ public class UserEntities {
 	public void setDepartment(DepartmentEntities department) {
 		this.department = department;
 	}
+	
+	public String getCrm() {
+		return crm;
+	}
+
+
+	public void setCrm(String crm) {
+		this.crm = crm;
+	}
+
+
+	public String getEspecialidade() {
+		return especialidade;
+	}
+
+
+	public void setEspecialidade(String especialidade) {
+		this.especialidade = especialidade;
+	}
+
 
 	@Override
 	public int hashCode() {

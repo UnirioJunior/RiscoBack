@@ -9,11 +9,15 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import com.unirio.Meu.Projeto.DataTransferObject.UserDTO;
+import com.unirio.Meu.Projeto.Entities.LicencaEntities;
 import com.unirio.Meu.Projeto.Entities.UserEntities;
 import com.unirio.Meu.Projeto.Entities.UsuarioVerificadorEntity;
 import com.unirio.Meu.Projeto.Entities.enums.TipoSituacaoUsuario;
+import com.unirio.Meu.Projeto.Repositories.LicencaRepositories;
 import com.unirio.Meu.Projeto.Repositories.UserRepository;
 import com.unirio.Meu.Projeto.Repositories.UsuarioVerificadorRepository;
+
+import jakarta.persistence.EntityNotFoundException;
 
 @Service
 public class UserService {
@@ -29,15 +33,29 @@ public class UserService {
 	@Autowired
 	private EmailService emailService;
 	
+	@Autowired
+    private LicencaRepositories licencaRepository;
+	
 	public List<UserDTO> listarTodos(){
 		List<UserEntities> usuarios = usuarioRepository.findAll();
 		return usuarios.stream().map(UserDTO::new).toList();
 	}
 	
 	public void inserir(UserDTO usuario) {
-		UserEntities usuarioEntity = new UserEntities(usuario);
-		usuarioEntity.setSenha(passwordEncoder.encode(usuario.getSenha()));
-		usuarioRepository.save(usuarioEntity);
+	    // Extrair o ID da licença do LicencaDTO
+	    Long licencaId = usuario.getLicenca().getId(); // Certifique-se de que o LicencaDTO tem o método getId()
+
+	    // Buscar a licença pelo ID
+	    LicencaEntities licenca = licencaRepository.findById(licencaId)
+	            .orElseThrow(() -> new EntityNotFoundException("Licença não encontrada"));
+	    
+	    // Criar a entidade de usuário e associar a licença
+	    UserEntities usuarioEntity = new UserEntities(usuario);
+	    usuarioEntity.setLicenca(licenca);
+	    usuarioEntity.setSenha(passwordEncoder.encode(usuario.getSenha()));
+	    
+	    // Salvar o usuário
+	    usuarioRepository.save(usuarioEntity);
 	}
 	
 	public void inserirNovoUsuario(UserDTO usuario) {

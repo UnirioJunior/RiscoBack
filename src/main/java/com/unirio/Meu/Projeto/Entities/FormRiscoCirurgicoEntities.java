@@ -43,7 +43,10 @@ public class FormRiscoCirurgicoEntities {
     private String exameFisico;
 
     @Column(nullable = false, columnDefinition = "text")
-    private String exameOutros;
+    private String exameECG;
+    
+    @Column(nullable = false, columnDefinition = "text")
+    private String exameRaiox;
 
     @Column(nullable = true, columnDefinition = "text")
     private String parecer;
@@ -51,6 +54,9 @@ public class FormRiscoCirurgicoEntities {
     @ManyToOne
     @JoinColumn(name = "id_usuario", nullable = true)
     private UserEntities usuario;
+    
+    @Column(nullable = true, columnDefinition = "text")
+    private String outrosExames;
 
     public FormRiscoCirurgicoEntities() {
     }
@@ -120,15 +126,23 @@ public class FormRiscoCirurgicoEntities {
         this.exameFisico = exameFisico;
     }
 
-    public String getExameOutros() {
-        return exameOutros;
-    }
+    public String getExameECG() {
+		return exameECG;
+	}
 
-    public void setExameOutros(String exameOutros) {
-        this.exameOutros = exameOutros;
-    }
+	public void setExameECG(String exameECG) {
+		this.exameECG = exameECG;
+	}
 
-    public String getParecer() {
+	public String getExameRaiox() {
+		return exameRaiox;
+	}
+
+	public void setExameRaiox(String exameRaiox) {
+		this.exameRaiox = exameRaiox;
+	}
+
+	public String getParecer() {
         return parecer;
     }
 
@@ -136,13 +150,6 @@ public class FormRiscoCirurgicoEntities {
         this.parecer = parecer;
     }
 
-//    public ExamesLaboratoriaisEntities getExamesLaboratoriais() {
-//        return examesLaboratoriais;
-//    }
-//
-//    public void setExamesLaboratoriais(ExamesLaboratoriaisEntities examesLaboratoriais) {
-//        this.examesLaboratoriais = examesLaboratoriais;
-//    }
 
     public UserEntities getUsuario() {
         return usuario;
@@ -159,6 +166,16 @@ public class FormRiscoCirurgicoEntities {
 	public void setAnnamnese(String annamnese) {
 		this.annamnese = annamnese;
 	}
+
+	public String getOutrosExames() {
+		return outrosExames;
+	}
+
+	public void setOutrosExames(String outrosExames) {
+		this.outrosExames = outrosExames;
+	}
+	
+	
     
 }
 

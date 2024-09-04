@@ -45,4 +45,13 @@ public class UserController{
 		userService.excluir(id);
 		return ResponseEntity.ok().build();
 	}
+	
+	@GetMapping("/{id}")
+	public ResponseEntity<UserDTO> buscarPorId(@PathVariable("id") Long id) {
+	    UserDTO user = userService.buscarPorId(id);
+	    if (user == null) {
+	        return ResponseEntity.notFound().build();
+	    }
+	    return ResponseEntity.ok(user);
+	}
 }

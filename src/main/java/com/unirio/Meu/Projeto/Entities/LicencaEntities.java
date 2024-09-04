@@ -2,6 +2,10 @@ package com.unirio.Meu.Projeto.Entities;
 
 import java.util.Objects;
 
+import org.springframework.beans.BeanUtils;
+
+import com.unirio.Meu.Projeto.DataTransferObject.LicencaDTO;
+
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -41,6 +45,10 @@ public class LicencaEntities {
 	
 	public LicencaEntities() {
 		
+	}
+	
+	public LicencaEntities(LicencaDTO licenca) {
+		BeanUtils.copyProperties(licenca, this);
 	}
 	
 	public Long getId() {
