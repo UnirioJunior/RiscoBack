@@ -22,7 +22,7 @@ public class ProcedimentoEntities {
 	@Column(length = 255, nullable = true)
 	private String descricao;
 
-	@Column(length = 2, nullable = true)
+	@Column(length = 10, nullable = true)
 	private String porte;
 
 	@Column(name = "porte_anestesico", nullable = true)
