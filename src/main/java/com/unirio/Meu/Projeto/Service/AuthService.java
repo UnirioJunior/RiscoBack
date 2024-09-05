@@ -43,9 +43,9 @@ public class AuthService {
 		
 		return accessDto;
 		
-		}catch(BadCredentialsException e) {
-			//TODO LOGIN OU SENHA INVALIDO
+		}catch (BadCredentialsException e) {
+		    System.out.println("Falha na autenticação: " + e.getMessage());
+		    return new AcessDTO("Acesso negado");
 		}
-		return new AcessDTO("Acesso negado");
 	}
 }
